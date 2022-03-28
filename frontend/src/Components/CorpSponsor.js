@@ -4,15 +4,48 @@ import {Component} from "react";
 
 const levels = [
     {
-        amount: 0,
-        name: "Student",
-        perks: []
+        amount: 175,
+        name: "Bronze",
+        perks: [
+            "Company name, logo, website, social media on NCHS Bands website",
+            "Optional flyers, promotional items, coupons provided to all band families"
+        ],
+        strict: []
+    },
+    {
+        amount: 300,
+        name: "Silver",
+        perks: [],
+        strict: ["Name on T-Shirt and home games banner"]
+    },
+    {
+        amount: 500,
+        name: "Gold",
+        perks: [
+            "Recognition at all home games"
+        ],
+        strict: ["Name on T-Shirt and home games banner"]
+    },
+    {
+        amount: 750,
+        name: "Platinum",
+        perks: [
+            "Booth at all home games and all band events",
+            "Two complimentary tickets at all home games"
+        ],
+        strict: ["Medium logo on T-Shirt and home games banner"]
+    },
+    {
+        amount: 1000,
+        name: "Diamond",
+        perks: [],
+        strict: ["Large logo on T-Shirt and home games banner"]
     }
 ]
 
 class Sponsor extends Component {
     state = {
-        amount: 500,
+        amount: 300,
     }
 
     getLevel() {
@@ -20,20 +53,20 @@ class Sponsor extends Component {
         let lastLevel;
 
         for (let level of levels) {
-            if (this.state.amount > level.amount) {
-                perks = level.perks.concat(perks);
+            if (this.state.amount >= level.amount) {
+                perks = perks.concat(level.perks);
                 lastLevel = level;
             } else {
                 return {
                     name: lastLevel.name,
-                    ["perks"]: perks
+                    ["perks"]: perks.concat(lastLevel.strict)
                 }
             }
         }
 
         return {
             name: lastLevel.name,
-            ["perks"]: perks
+            ["perks"]: perks.concat(lastLevel.strict)
         }
     }
 
@@ -43,16 +76,16 @@ class Sponsor extends Component {
         return (
             <div className="corpsponsor card">
                 <h2>Select amount:</h2>
-                <input type="range" min="100" max="5000"
+                <input type="range" min="175" max="1000"
                        value={this.state.amount}
                        onChange={(e) => {
                            this.setState({
-                               amount: Math.round(e.target.value/50)*50
+                               amount: Math.round(e.target.value / 25) * 25
                            });
                        }}
                 />
                 <h3 className="amount">
-                    ${this.state.amount}
+                    ${this.state.amount} - {level.name}
                 </h3>
                 {/*<h3 className="level">*/}
                 {/*    Sponsorship level:*/}
@@ -61,6 +94,13 @@ class Sponsor extends Component {
                 <h3 className="heading">
                     {level.name} Level Perks
                 </h3>
+                <ul>
+                    {level.perks.map(perk => {
+                        return <li>
+                            {perk}
+                        </li>
+                    })}
+                </ul>
             </div>
         )
     }

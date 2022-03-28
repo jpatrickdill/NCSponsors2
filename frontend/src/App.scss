@@ -145,6 +145,8 @@ div.splash {
 .content {
   padding: 0 200px;
 
+  // font-size: 14pt;
+
   @media screen and (max-width: $mobile) {
     padding: 0 8px;
   }
@@ -236,9 +238,11 @@ input[type=range] {
 
       .amount {
         text-align: center;
+        font-size: 1.75em;
       }
 
-      .level {
+      ul {
+        font-size: 1.3em;
       }
     }
   }

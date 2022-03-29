@@ -15,5 +15,10 @@ def serve_react(path):
     return send_from_directory(app.static_folder, path)
 
 
+@app.route("/paymentcallback")
+def paypal_callback():
+    return "hi"
+
+
 if __name__ == "__main__":
     app.run("localhost", 3001, debug=True)

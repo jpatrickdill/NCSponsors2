@@ -1,7 +1,10 @@
 from flask import Flask, send_from_directory
-from pathlib import Path
+import os
 
 app = Flask(__name__, static_folder="build")
+
+if not os.environ.get("DEV"):
+    app.config["SERVER_NAME"] = "marchathon.nchsband.com"
 
 
 @app.route("/", defaults={"path": "200.html"})

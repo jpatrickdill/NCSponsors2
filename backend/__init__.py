@@ -6,6 +6,8 @@ app = Flask(__name__, static_folder="build")
 if not os.environ.get("DEV"):
     app.config["SERVER_NAME"] = "marchathon.nchsband.com"
 
+print(app.config["SERVER_NAME"])
+
 
 @app.route("/", defaults={"path": "200.html"})
 @app.route("/<path:path>")

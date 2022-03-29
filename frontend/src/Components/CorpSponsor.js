@@ -74,34 +74,37 @@ class Sponsor extends Component {
         let level = this.getLevel();
 
         return (
-            <div className="corpsponsor card">
-                <h2>Select amount:</h2>
-                <input type="range" min="175" max="1000"
-                       value={this.state.amount}
-                       onChange={(e) => {
-                           this.setState({
-                               amount: Math.round(e.target.value / 25) * 25
-                           });
-                       }}
-                />
-                <h3 className="amount">
-                    ${this.state.amount} - {level.name}
-                </h3>
-                {/*<h3 className="level">*/}
-                {/*    Sponsorship level:*/}
-                {/*    <span className="heading"> {level.name}</span>*/}
-                {/*</h3>*/}
-                <h3 className="heading">
-                    {level.name} Level Perks
-                </h3>
-                <ul>
-                    {level.perks.map(perk => {
-                        return <li>
-                            {perk}
-                        </li>
-                    })}
-                </ul>
-            </div>
+            <>
+                <div className="corpsponsor card">
+                    <h2>Select amount:</h2>
+                    <input type="range" min="175" max="1000"
+                           value={this.state.amount}
+                           onChange={(e) => {
+                               this.setState({
+                                   amount: Math.round(e.target.value / 25) * 25
+                               });
+                           }}
+                    />
+                    <h3 className="amount">
+                        ${this.state.amount} - {level.name}
+                    </h3>
+                    {/*<h3 className="level">*/}
+                    {/*    Sponsorship level:*/}
+                    {/*    <span className="heading"> {level.name}</span>*/}
+                    {/*</h3>*/}
+                    <h3 className="heading">
+                        {level.name} Level Perks
+                    </h3>
+                    <ul>
+                        {level.perks.map(perk => {
+                            return <li>
+                                {perk}
+                            </li>
+                        })}
+                    </ul>
+                </div>
+                
+            </>
         )
     }
 }

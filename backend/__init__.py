@@ -4,7 +4,7 @@ import os
 app = Flask(__name__, static_folder="build")
 
 if not os.environ.get("DEV"):
-    app.config["SERVER_NAME"] = "marchathon.nchsband.com"
+    app.config["SERVER_NAME"] = "marchathon.herokuapp.com"
 
 print(app.config["SERVER_NAME"])
 

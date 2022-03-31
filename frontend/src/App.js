@@ -11,9 +11,7 @@ import Receipt from "./Routes/Receipt";
 // axios setup
 
 let port = window.location.port;
-if (window.location.port.toString() === "3001") {
-    port = "3000";
-} else if (window.location.port.toString() === "3000") {
+if (window.location.port.toString() === "3000") {
     port = "3001";
 }
 axios.defaults.baseURL = `${window.location.protocol}//${window.location.hostname}:${port}/api`;

@@ -58,6 +58,8 @@ class Sponsor extends Component {
 
     componentDidMount() {
         this._mounted = true
+
+
     }
 
     componentDidUnmount() {
@@ -145,7 +147,7 @@ class Sponsor extends Component {
                     <PaymentProcessor
                         disabled={!this.state.canSubmit}
                         data={this._formdata}
-                        amount={1}/>
+                        amount={this.state.amount}/>
                 </div>
             </>
         )

@@ -53,7 +53,9 @@ function App() {
                 <div className="content">
                     <Routes>
                         <Route path="/corporate" element={<Corporate/>}/>
-                        <Route path="/student" element={null}/>
+                        <Route path="/student" element={<h2>
+                            Under Construction
+                        </h2>}/>
                         <Route path="/receipt/:rid" element={<Receipt/>}/>
                     </Routes>
                 </div>

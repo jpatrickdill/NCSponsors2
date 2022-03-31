@@ -93,7 +93,7 @@ class Sponsor extends Component {
             <>
                 <div className="corpsponsor card right">
                     <h2>Select amount:</h2>
-                    <input type="range" min="175" max="1000"
+                    <input type="range" min="175" max="2500"
                            value={this.state.amount}
                            onChange={(e) => {
                                this.setState({

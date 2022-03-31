@@ -21,7 +21,7 @@ axios.defaults.baseURL = `${window.location.protocol}//${window.location.hostnam
 // paypal options
 
 const paypalOptions = {
-    "client-id": "ATASz366M-w5h44FS0-uiKIMh1XES2iKKINKxU5DO5uf5JhkNzLb-vM_3yovccrRr9Gqh1pOb7rphPn4",
+    "client-id": "AWapugZds5MLS_bGQD-GoJmhEQKOIKmNzEV0zJVJTwW0F6_tItQ4Odig-oIjblzMHMNiqLAI6ld9RXyJ",
     currency: "USD",
     intent: "capture"
 };

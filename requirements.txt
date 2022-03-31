@@ -1,2 +1,6 @@
 flask
 gunicorn
+sqlalchemy
+psycopg2
+pypika
+flask-cors

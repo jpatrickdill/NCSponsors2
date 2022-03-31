@@ -9,7 +9,7 @@ class Corporate extends Component {
         return (
             <div className="corporate">
                 <br id="#/corporate"/>
-                <div className="corp-flex">
+                <div className="flex-columns">
                     <About/>
                     <CorpSponsor />
                 </div>

@@ -1,6 +1,8 @@
 import {Link, Route, Routes} from "react-router-dom";
 import {BrowserView, MobileView} from 'react-device-detect';
-import {Component} from "react";
+import {Component, createRef} from "react";
+import CorpForm from "./CorpForm";
+import PaymentProcessor from "./PaymentProcessor";
 
 const levels = [
     {
@@ -46,6 +48,20 @@ const levels = [
 class Sponsor extends Component {
     state = {
         amount: 300,
+        canSubmit: false,
+    }
+    _formdata = {}
+
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount() {
+        this._mounted = true
+    }
+
+    componentDidUnmount() {
+        this._mounted = false
     }
 
     getLevel() {
@@ -75,7 +91,7 @@ class Sponsor extends Component {
 
         return (
             <>
-                <div className="corpsponsor card">
+                <div className="corpsponsor card right">
                     <h2>Select amount:</h2>
                     <input type="range" min="175" max="1000"
                            value={this.state.amount}
@@ -95,15 +111,43 @@ class Sponsor extends Component {
                     <h3 className="heading">
                         {level.name} Level Perks
                     </h3>
-                    <ul>
+                    <ul className="perks">
                         {level.perks.map(perk => {
                             return <li>
                                 {perk}
                             </li>
                         })}
                     </ul>
+
+                    <hr/>
+
+                    <CorpForm onChange={(canSub, vals) => {
+                        console.log(this._mounted)
+                        if (!this._mounted) {
+                            return;
+                        }
+
+                        this._formdata = vals;
+
+                        console.log(vals);
+
+                        if (canSub !== this.state.canSubmit) {
+                            this.setState({
+                                canSubmit: canSub,
+                            })
+                        }
+
+
+                    }}/>
+
+                    <h3>
+                        Your Donation: ${this.state.amount}
+                    </h3>
+                    <PaymentProcessor
+                        disabled={!this.state.canSubmit}
+                        data={this._formdata}
+                        amount={1}/>
                 </div>
-                
             </>
         )
     }

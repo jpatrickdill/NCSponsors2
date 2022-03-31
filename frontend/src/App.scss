@@ -43,6 +43,18 @@ body {
   overflow: overlay;
 }
 
+input:not([type="range"]), textarea {
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding: 8px;
+
+  border: 1px solid $blue;
+
+  &:focus {
+    border: 2px solid $orange;
+  }
+}
+
 
 // splash screen
 
@@ -145,7 +157,7 @@ div.splash {
 .content {
   padding: 0 200px;
 
-  // font-size: 14pt;
+  font-size: 16pt;
 
   @media screen and (max-width: $mobile) {
     padding: 0 8px;
@@ -156,7 +168,7 @@ div.splash {
   }
 
   h2 {
-    font-size: 2em;
+    font-size: 2rem;
   }
 }
 
@@ -209,41 +221,70 @@ input[type=range] {
   font-family: heading, sans-serif;
 }
 
-.corporate {
-  .corp-flex {
-    display: flex;
-    flex-wrap: wrap;
+.flex-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 48px;
+}
 
-    .about {
-      flex-grow: 1;
+.about {
+  @media screen and (min-width: $mobile) {
+    max-width: 700px;
+  }
+
+  font-size: 1.5rem;
+
+  img {
+    width: 100%;
+    border-radius: 16px;
+  }
+}
+
+.form {
+  div {
+    margin: 5px 0;
+  }
+
+  label {
+    font-size: 1.3rem;
+  }
+
+  input, textarea {
+    display: block;
+    width: 100%;
+    font-size: 1.5rem;
+  }
+}
+
+.corporate {
+  .corpsponsor {
+    flex-grow: 1;
+
+    @media screen and (min-width: $mobile) {
+      min-width: 600px;
+      max-width: 700px;
     }
 
-    .corpsponsor {
-      flex-grow: 1;
 
-      @media screen and (min-width: $mobile) {
-        min-width: 800px;
-      }
+    h2 {
+      // text-align: center;
+      margin: 8px 0;
+    }
 
+    h3 {
+      margin: 0.5em 0;
+      font-size: 1.3em;
+    }
 
-      h2 {
-        // text-align: center;
-        margin: 8px 0;
-      }
+    .amount {
+      text-align: center;
+      font-size: 1.75em;
+    }
 
-      h3 {
-        margin: 0.75em 0;
-        font-size: 1.5em;
-      }
-
-      .amount {
-        text-align: center;
-        font-size: 1.75em;
-      }
-
-      ul {
-        font-size: 1.3em;
-      }
+    ul {
+      margin: 0;
+      min-height: 9em;
     }
   }
 }

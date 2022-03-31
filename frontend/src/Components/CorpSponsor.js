@@ -122,7 +122,6 @@ class Sponsor extends Component {
                     <hr/>
 
                     <CorpForm onChange={(canSub, vals) => {
-                        console.log(this._mounted)
                         if (!this._mounted) {
                             return;
                         }

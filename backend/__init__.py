@@ -32,7 +32,7 @@ def serve_react(path):
     return send_from_directory(app.static_folder, path)
 
 
-@app.route("/session")
+@app.route("/api/session")
 def session_id():
     # get random receipt id for future payment
 
@@ -52,7 +52,7 @@ def session_id():
     })
 
 
-@app.route("/receipt/<receipt_id>", methods=["POST"])
+@app.route("/api/receipt/<receipt_id>", methods=["POST"])
 def update_receipt(receipt_id):
     q = Query.update(donations)
 
@@ -69,7 +69,7 @@ def update_receipt(receipt_id):
     })
 
 
-@app.route("/receipt/<receipt_id>", methods=["GET"])
+@app.route("/api/receipt/<receipt_id>", methods=["GET"])
 def get_receipt(receipt_id):
     with db.connect() as conn:
         r = conn.execute(text("select * from donations where id=:rid"), rid=receipt_id).first()
@@ -83,7 +83,7 @@ def get_receipt(receipt_id):
     })
 
 
-@app.route("/paymentcallback")
+@app.route("/api/paymentcallback")
 def paypal_callback():
     return "hi"
 

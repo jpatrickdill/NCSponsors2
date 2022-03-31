@@ -6,6 +6,7 @@ import Corporate from "./Routes/Corporate";
 import {PayPalScriptProvider, PayPalButtons} from "@paypal/react-paypal-js";
 import About from "./Components/About";
 import axios from "axios";
+import Receipt from "./Routes/Receipt";
 
 // axios setup
 
@@ -15,7 +16,7 @@ if (window.location.port.toString() === "3001") {
 } else if (window.location.port.toString() === "3000") {
     port = "3001";
 }
-axios.defaults.baseURL = `${window.location.protocol}//${window.location.hostname}:${port}`;
+axios.defaults.baseURL = `${window.location.protocol}//${window.location.hostname}:${port}/api`;
 
 // paypal options
 
@@ -55,6 +56,7 @@ function App() {
                     <Routes>
                         <Route path="/corporate" element={<Corporate/>}/>
                         <Route path="/student" element={null}/>
+                        <Route path="/receipt/:rid" element={<Receipt/>}/>
                     </Routes>
                 </div>
             </div>

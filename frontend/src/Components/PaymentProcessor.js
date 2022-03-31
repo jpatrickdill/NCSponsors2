@@ -26,7 +26,7 @@ class PaymentProcessor extends Component {
     }
 
     receipt_url() {
-        return axios.defaults.baseURL + `/receipt/${this.state.trans_id}`;
+        return `${window.location.protocol}//${window.location.hostname}:${window.location.port}/#/receipt/${this.state.trans_id}`;
     }
 
     render() {
@@ -40,7 +40,6 @@ class PaymentProcessor extends Component {
 
         return (
             <>
-                <p>{this.state.trans_id}</p>
                 <PayPalButtons
                     disabled={false}
                     createOrder={(data, actions) => {
@@ -77,7 +76,17 @@ class PaymentProcessor extends Component {
                             });
                     }}
                     onApprove={(data, actions) => {
-                        axios.post(this.api_url(), this.props.data, {
+                        let fields = this.props.data;
+                        fields.donation = {
+                            "amount": `$${this.props.amount}`
+                        }
+
+                        let to_post = {
+                            category: this.props.category || "corporate",
+                            "fields": fields
+                        }
+
+                        axios.post(this.api_url(), to_post, {
                             headers: {
                                 'Content-Type': 'application/json'
                             }

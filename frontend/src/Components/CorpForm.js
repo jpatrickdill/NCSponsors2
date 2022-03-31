@@ -13,6 +13,8 @@ const InputField = forwardRef((props, ref) => {
     // Let's use splitFormProps to get form-specific props
     const [field, fieldOptions, rest] = splitFormProps(props);
 
+    fieldOptions.validatePristine = true;
+
     // Use the useField hook with a field and field options
     // to access field state
     const {

@@ -288,3 +288,21 @@ input[type=range] {
     }
   }
 }
+
+.receipt {
+  @media screen and (min-width: 800px) {
+    width: 800px;
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  h3 {
+    margin-bottom: 4px;
+  }
+
+  p {
+    margin: 4px 0;
+  }
+}

@@ -3,6 +3,7 @@ import {BrowserView, MobileView} from 'react-device-detect';
 import {Component, createRef} from "react";
 import CorpForm from "./CorpForm";
 import PaymentProcessor from "./PaymentProcessor";
+import AmountSlider from "./AmountSlider";
 
 const levels = [
     {
@@ -94,18 +95,16 @@ class Sponsor extends Component {
         return (
             <>
                 <div className="corpsponsor card right">
-                    <h2>Select amount:</h2>
-                    <input type="range" min="175" max="2500"
-                           value={this.state.amount}
-                           onChange={(e) => {
-                               this.setState({
-                                   amount: Math.round(e.target.value / 25) * 25
-                               });
-                           }}
+                    <AmountSlider
+                        min={175}
+                        max={2500}
+                        initial={300}
+                        round={25}
+                        custom
+                        onChange={(val) => {
+                            this.setState({amount: val});
+                        }}
                     />
-                    <h3 className="amount">
-                        ${this.state.amount} - {level.name}
-                    </h3>
                     {/*<h3 className="level">*/}
                     {/*    Sponsorship level:*/}
                     {/*    <span className="heading"> {level.name}</span>*/}

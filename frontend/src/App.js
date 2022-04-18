@@ -7,6 +7,7 @@ import {PayPalScriptProvider, PayPalButtons} from "@paypal/react-paypal-js";
 import About from "./Components/About";
 import axios from "axios";
 import Receipt from "./Routes/Receipt";
+import Basic from "./Routes/Basic";
 
 // axios setup
 
@@ -44,7 +45,8 @@ function App() {
                             Camaraderie. Artistry. Excellence.
                         </h2>
                         <div className="options">
-                            <Link to="/corporate">Sponsor the Band</Link>
+                            <Link to="/basic">Basic Donation</Link>
+                            <Link to="/corporate">Corporate Sponsorship</Link>
                             <Link to="/student">Sponsor a Student</Link>
                         </div>
                     </div>
@@ -52,6 +54,7 @@ function App() {
 
                 <div className="content">
                     <Routes>
+                        <Route path="/basic" element={<Basic/>}/>
                         <Route path="/corporate" element={<Corporate/>}/>
                         <Route path="/student" element={<h2>
                             Under Construction

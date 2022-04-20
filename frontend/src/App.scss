@@ -308,6 +308,39 @@ input[type=range] {
   }
 }
 
+.student-selector {
+  hr {
+    margin: 4px 0;
+  }
+  .student {
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+
+    h3 {
+      margin: 0;
+      display: inline-block;
+    }
+
+    .choose {
+      display: inline-block;
+      border: 2px solid $blue;
+      border-radius: 8px;
+      text-align: center;
+      width: 48px;
+      height: 100%;
+
+      transition: 0s ease all;
+
+      &:hover {
+        color: $orange;
+        border-color: $orange;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
 
 .receipt {
   @media screen and (min-width: 800px) {

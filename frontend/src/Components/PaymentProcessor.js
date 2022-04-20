@@ -83,7 +83,8 @@ class PaymentProcessor extends Component {
 
                         let to_post = {
                             category: this.props.category || "corporate",
-                            "fields": fields
+                            "fields": fields,
+                            student: this.props.student
                         }
 
                         axios.post(this.api_url(), to_post, {

@@ -1,14 +1,14 @@
 import {Link, Route, Routes} from "react-router-dom";
 import {BrowserView, MobileView} from 'react-device-detect';
 import {Component, createRef} from "react";
-import DonoForm from "./DonoForm";
-import PaymentProcessor from "./PaymentProcessor";
-import AmountSlider from "./AmountSlider";
+import StudentForm from "./StudentForm";
+import PaymentProcessor from "../PaymentProcessor";
+import AmountSlider from "../AmountSlider";
+import PropTypes from "prop-types";
 
 
-class DonoPage extends Component {
+class Confirm extends Component {
     state = {
-        amount: 20,
         canSubmit: false,
     }
     _formdata = {}
@@ -44,10 +44,14 @@ class DonoPage extends Component {
 
                     <hr/>
 
-                    <DonoForm onChange={(canSub, vals) => {
+                    <StudentForm onChange={(canSub, vals) => {
                         if (!this._mounted) {
                             return;
                         }
+
+                        vals.student = {
+                            "name": this.props.student.name
+                        };
 
                         this._formdata = vals;
 
@@ -63,17 +67,23 @@ class DonoPage extends Component {
                     }}/>
 
                     <h3>
-                        Your Donation: ${this.state.amount.toLocaleString("en-us")}
+                        Your Donation: ${this.props.amount}
                     </h3>
                     <PaymentProcessor
                         disabled={!this.state.canSubmit}
-                        category="basic"
+                        category="student"
                         data={this._formdata}
-                        amount={this.state.amount}/>
+                        student={this.props.student}
+                        amount={this.props.amount}/>
                 </div>
             </>
         )
     }
 }
 
-export default DonoPage;
+Confirm.propTypes = {
+    student: PropTypes.object.required,
+    amount: PropTypes.number.required
+}
+
+export default Confirm;

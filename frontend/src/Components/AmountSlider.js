@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import PropTypes from 'prop-types';
 
 function AmountSlider(props) {
@@ -6,22 +6,40 @@ function AmountSlider(props) {
     const [editingCustom, setEditing] = useState(false);
     let round = props.round || 1;
 
+    let customInput = useRef();
+
+    useEffect(() => {
+        if (editingCustom) {
+            customInput.current.focus();
+        } else {
+
+        }
+    }, [editingCustom])
+
     let amountDisplay;
     if (props.custom) {
         if (editingCustom) {
             amountDisplay = (
                 <input className="amount" type="number" value={amount}
-                       onBlur={() => {
-                           setEditing(false)
-                       }}
-                       onChange={(e) => {
-                           let clamped = Math.max(props.min, e.target.value)
+                       ref={customInput} onBlur={(e) => {
+                           let clamped = Math.max(props.min, e.target.value);
                            setAmount(clamped);
 
                            if (props.onChange) {
                                props.onChange(clamped);
                            }
-                           setAmount(clamped);
+                           setEditing(false)
+                       }}
+                       onChange={(e) => {
+                           setAmount(e.target.value);
+
+                           let clamped = Math.max(props.min, e.target.value)
+                           if (props.onChange && e.target.value >= props.min) {
+                               // allow users to edit value freely without pushing
+                               // change to parent if constraints not met yet
+                               // prevents interruption of user input & breaking parents
+                               props.onChange(clamped);
+                           }
                        }}/>
 
             )
@@ -32,7 +50,7 @@ function AmountSlider(props) {
                         setEditing(true)
                     }}>Click to enter custom amount</a>
                     <h3 className="amount">
-                        ${amount}
+                        ${amount.toLocaleString("en-us")}
                     </h3>
                 </>
             )
@@ -40,7 +58,7 @@ function AmountSlider(props) {
     } else {
         amountDisplay = (
             <h3 className="amount">
-                ${amount}
+                ${amount.toLocaleString("en-us")}
             </h3>
         )
     }

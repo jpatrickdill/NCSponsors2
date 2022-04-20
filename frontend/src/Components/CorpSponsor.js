@@ -136,12 +136,10 @@ class Sponsor extends Component {
                                 canSubmit: canSub,
                             })
                         }
-
-
                     }}/>
 
                     <h3>
-                        Your Donation: ${this.state.amount}
+                        Your Donation: ${this.state.amount.toLocaleString("en-us")}
                     </h3>
                     <PaymentProcessor
                         disabled={!this.state.canSubmit}

@@ -83,6 +83,21 @@ def get_receipt(receipt_id):
     })
 
 
+@app.route("/api/students", methods=["GET"])
+def get_students():
+    with db.connect() as conn:
+        r = conn.execute("select * from roster")
+        students = [
+            {
+                "name": student.full_name.strip(),
+                "id": student.id
+            } for student in r
+        ]
+
+        students = sorted(students, key=lambda s: s["name"].split(" ")[-1])
+        return jsonify(students)
+
+
 @app.route("/api/paymentcallback")
 def paypal_callback():
     return "hi"

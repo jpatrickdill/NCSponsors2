@@ -68,6 +68,10 @@ class Receipt extends Component {
 
         let els = [];
         for (const [section, fields] of Object.entries(this.state.data.fields)) {
+            if (section.startsWith("_")) {
+                continue;
+            }
+
             els.push((
                 <h3 key={section}>{capitalize(section)}</h3>
             ))

@@ -8,6 +8,7 @@ import About from "./Components/About";
 import axios from "axios";
 import Receipt from "./Routes/Receipt";
 import Basic from "./Routes/Basic";
+import Student from "./Routes/Student";
 
 // axios setup
 
@@ -56,9 +57,7 @@ function App() {
                     <Routes>
                         <Route path="/basic" element={<Basic/>}/>
                         <Route path="/corporate" element={<Corporate/>}/>
-                        <Route path="/student" element={<h2>
-                            Under Construction
-                        </h2>}/>
+                        <Route path="/student" element={<Student/>}/>
                         <Route path="/receipt/:rid" element={<Receipt/>}/>
                     </Routes>
                 </div>

@@ -47,6 +47,7 @@ input:not([type="range"]), textarea {
   box-sizing: border-box;
   border-radius: 8px;
   padding: 8px;
+  font-size: 0.8em;
 
   border: 1px solid $blue;
 
@@ -62,6 +63,7 @@ input:not([type="range"]), textarea {
 nav {
   position: fixed;
   background: $blue;
+  z-index: 100;
 
   width: 100vw;
   margin: 0;
@@ -308,10 +310,79 @@ input[type=range] {
   }
 }
 
+.clip {
+  overflow: hidden;
+}
+
+.button, button {
+  padding: 0 8px;
+  display: inline-block;
+  text-align: center;
+  min-width: 24px;
+  border: 2px solid $blue;
+  border-radius: 8px;
+  font-weight: 400;
+
+  &.inline {
+    margin: 8px 8px 0 0;
+  }
+
+  &.back {
+    margin-right: 16px;
+  }
+
+  @media screen and (min-width: 800px) {
+    &:hover {
+      color: darken($orange, 5%);
+      border-color: darken($orange, 5%);
+      cursor: pointer;
+    }
+  }
+  &.enabled {
+    color: $orange;
+    border-color: $orange;
+    cursor: pointer;
+  }
+}
+
+.student-flow {
+  width: 100%;
+
+  .panels {
+    transition: 0.5s ease all;
+
+    .student-selector {
+
+    }
+
+    .student-panel {
+      position: absolute;
+      left: 120%;
+      top: 0;
+
+
+      //background: #f1f1f1;
+      //border-radius: 24px;
+    }
+
+    &.shift {
+      transform: translate(-115%, 0);
+    }
+  }
+}
+
 .student-selector {
+  min-height: 50vh;
+
+  input {
+    width: 100%;
+    font-size: 1em;
+  }
+
   hr {
     margin: 4px 0;
   }
+
   .student {
     padding: 8px;
     display: flex;
@@ -327,20 +398,41 @@ input[type=range] {
       border: 2px solid $blue;
       border-radius: 8px;
       text-align: center;
-      width: 48px;
+      padding: 0 16px;
+      //width: 48px;
       height: 100%;
 
-      transition: 0s ease all;
+      font-weight: 400;
 
-      &:hover {
-        color: $orange;
+      transition: 0s ease all;
+    }
+
+    &:hover, &.enabled {
+      color: $orange;
+      cursor: pointer;
+
+      .choose {
         border-color: $orange;
-        cursor: pointer;
       }
     }
   }
 }
 
+h4 {
+  margin-top: 4px;
+}
+
+.amount-prefills {
+  div.custom {
+    margin-top: 10px;
+  }
+
+  @media screen and (max-width: 800px) {
+    .button {
+      width: 100%;
+    }
+  }
+}
 
 .receipt {
   @media screen and (min-width: 800px) {

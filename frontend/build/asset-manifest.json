@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b0c0b5df.css",
+    "main.js": "/static/js/main.c8be8e1c.js",
+    "static/js/787.9750ae9a.chunk.js": "/static/js/787.9750ae9a.chunk.js",
+    "static/media/fullband.jpg": "/static/media/fullband.452345b89e5465faacba.jpg",
+    "static/media/blue-night.jpg": "/static/media/blue-night.bbf37b11086566917f71.jpg",
+    "static/media/blue-day.jpg": "/static/media/blue-day.53d3db3c1dde3d08a7f1.jpg",
+    "static/media/Heading-Pro-Wide-Regular.ttf": "/static/media/Heading-Pro-Wide-Regular.98dd6bbecb0114995fee.ttf",
+    "static/media/banner-logo.png": "/static/media/banner-logo.23404e555aef0135013e.png",
+    "index.html": "/index.html",
+    "main.b0c0b5df.css.map": "/static/css/main.b0c0b5df.css.map",
+    "main.c8be8e1c.js.map": "/static/js/main.c8be8e1c.js.map",
+    "787.9750ae9a.chunk.js.map": "/static/js/787.9750ae9a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b0c0b5df.css",
+    "static/js/main.c8be8e1c.js"
+  ]
+}

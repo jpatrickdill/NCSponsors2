@@ -22,7 +22,7 @@ class PaymentProcessor extends Component {
     }
 
     api_url() {
-        return axios.defaults.baseURL + `/receipt/${this.state.trans_id}`;
+        return `/receipt/${this.state.trans_id}`;
     }
 
     receipt_url() {
@@ -30,6 +30,7 @@ class PaymentProcessor extends Component {
     }
 
     render() {
+        console.log(this.api_url());
         if (this.props.disabled) {
             return <h4>
                 Complete form to finish donation.
@@ -72,28 +73,40 @@ class PaymentProcessor extends Component {
                             })
                             .then((orderId) => {
                                 // Your code here after create the donation
+
                                 return orderId;
                             });
                     }}
                     onApprove={(data, actions) => {
-                        let fields = this.props.data;
-                        fields.donation = {
-                            "amount": `$${this.props.amount}`
-                        }
+                        return actions.order.capture({})
+                            .then((details) => {
+                                let fields = this.props.data;
+                                fields.donation = {
+                                    "amount": `$${this.props.amount}`
+                                }
 
-                        let to_post = {
-                            category: this.props.category || "corporate",
-                            "fields": fields,
-                            student: this.props.student
-                        }
+                                let to_post = {
+                                    category: this.props.category || "corporate",
+                                    "fields": fields,
+                                    student: this.props.student
+                                }
 
-                        axios.post(this.api_url(), to_post, {
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                        })
-                            .then((resp) => {
-                                window.location.href = this.receipt_url();
+                                console.log(to_post)
+
+                                axios.post(this.api_url(), to_post, {
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    }
+                                })
+                                    .then((resp) => {
+                                        window.location.href = this.receipt_url();
+                                    })
+                                    .catch((err) => {
+                                        console.log(err)
+                                    })
+                            }).catch((err) => {
+                                alert(`Error: ${err} try again.`);
+                                console.log(err);
                             })
                     }}
                 />

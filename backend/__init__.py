@@ -1,3 +1,4 @@
+import json
 import os
 from uuid import uuid4
 
@@ -15,6 +16,7 @@ app = Flask(__name__, static_folder="build")
 if not os.environ.get("DEV"):
     app.config["SERVER_NAME"] = "marchathon.nchsband.com"
 else:
+    app.config["CORS_ORIGIN"] = "*"
     cors = CORS(app)
 
 print(app.config["SERVER_NAME"])
@@ -54,6 +56,8 @@ def session_id():
 
 @app.route("/api/receipt/<receipt_id>", methods=["POST"])
 def update_receipt(receipt_id):
+    data = request.get_json(force=True)
+
     q = Query.update(donations)
 
     q = q.set(donations.data, bytes.decode(request.get_data(), "utf-8"))
@@ -61,6 +65,9 @@ def update_receipt(receipt_id):
 
     with db.connect() as conn:
         r = conn.execute(str(q) + " RETURNING *").first()
+
+    if data.get("student"):
+        print(data["student"])
 
     return jsonify({
         "id": r.id,
@@ -81,6 +88,22 @@ def get_receipt(receipt_id):
         "timestamp": r.timestamp,
         "data": r.data
     })
+
+
+@app.route("/api/oops", methods=["GET"])
+def get_oops():
+    with db.connect() as conn:
+        receipts = conn.execute(text("select * from donations"))
+
+        total = 0
+        for r in receipts:
+            if not r.data:
+                continue
+
+            data = json.loads(r.data)
+            total += float(data["fields"]["donation"]["amount"][1:])
+
+    return jsonify(total)
 
 
 @app.route("/api/students", methods=["GET"])
@@ -104,4 +127,4 @@ def paypal_callback():
 
 
 if __name__ == "__main__":
-    app.run("localhost", 3001, debug=True)
+    app.run("0.0.0.0", 3001, debug=True)

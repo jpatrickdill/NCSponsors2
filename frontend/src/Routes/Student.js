@@ -19,7 +19,11 @@ class Student extends Component {
             <div className="corporate">
                 <br id="pagetop"/>
                 <div className="flex-columns">
-                    {/*<About/>*/}
+                    <div className="about left">
+                        Please consider donating to an individual student. Your help supplements the costs of equipment,
+                        maintenance costs, outside instruction, transportation expenses, competition/registration fees,
+                        and much more. 100% of the donations provided here go directly to the student.
+                    </div>
                     <StudentPage/>
                 </div>
             </div>

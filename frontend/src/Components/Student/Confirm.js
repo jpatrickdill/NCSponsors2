@@ -28,10 +28,11 @@ const donation_amounts = {
     "Props": 40,
     "Transportation": 60,
     "Competitions": 180,
-    "Show Shirt": 15,
+    "Dri-fit Shirt": 15,
     "Single Meal": 9,
     "Season's Meals": 90,
     "Guard Equipment": 100,
+    "Guard Warmups": 100,
     "Guard Costume": 200
 }
 

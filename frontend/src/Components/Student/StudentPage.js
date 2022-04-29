@@ -26,7 +26,7 @@ function StudentSelector(props) {
     })
 
     return (
-        <div className="student-selector">
+        <div className="student-selector" id="selector">
             <h2>Select student:</h2>
             <input type="text" value={search} placeholder="Search student..."
                    onChange={(e) => {
@@ -59,7 +59,7 @@ function StudentSelector(props) {
 function StudentPanel(props) {
     useEffect(() => {
         setTimeout(() => {
-            let scrollto = document.getElementById("pagetop")
+            let scrollto = document.getElementById("selector")
             let y = scrollto.getBoundingClientRect().top + window.pageYOffset - 20;
 
             window.scrollTo({top: y, behavior: 'smooth'});
@@ -67,7 +67,7 @@ function StudentPanel(props) {
     }, [1])
 
     return (
-        <div className="student-panel" ref={props.ref}>
+        <div className="student-panel right" ref={props.ref}>
             <h3><span className="button back"
                       onClick={() => {
                           if (props.onBack) {
